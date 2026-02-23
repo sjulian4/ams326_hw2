@@ -48,10 +48,54 @@ print("Rectangle (midpoint) area:", area_rect)
 # (2) (20 pts) Trapezoidal method.
 print("Trapezoioal Method")
 
+# (f(a) + f(b)) / 2 (b-a)
+# (delta x)/2 [f(x_0) + 2f(x_1) + ... + 2f(x_{n-1}) + f(x_n)]
 
+def trapezoidal_method(n):
+    dx = (xmax - xmin) / n
+    dy = (ymax - ymin) / n
+    area = 0.0
+    
+    for i in range(n + 1):
+        for j in range(n + 1):
+            x = xmin + i * dx
+            y = ymin + j * dy
+            
+            weight = 1
+            if i == 0 or i == n: # at the first or last term
+                weight *= 0.5
+            if j == 0 or j == n:
+                weight *= 0.5
+                
+            if integrand(x, y):
+                area += weight
+    
+    return area * dx * dy
+
+n_trap = 1000
+area_trap = trapezoidal_method(n_trap)
+print("Trapezoidal area:", area_trap)
 
 
 # (3) (10 pts) Monte Carlo method (note: this may run significantly slower than the first two).
 print("Monte Carlo Method")
+# 2000000 samples
+
+def monte_carlo(num_samples):
+    np.random.seed(2) # for consistency
+    xs = np.random.uniform(xmin, xmax, num_samples)
+    ys = np.random.uniform(ymin, ymax, num_samples)
+    
+    count = 0
+    for x, y in zip(xs, ys):
+        if integrand(x, y):
+            count += 1
+            
+    box_area = (xmax - xmin) * (ymax - ymin)
+    return box_area * count / num_samples
+
+samples = 2_000_000
+area_mc = monte_carlo(samples)
+print("Monte Carlo area:", area_mc)
 
 
