@@ -80,6 +80,8 @@ print("Trapezoidal area:", area_trap)
 # (3) (10 pts) Monte Carlo method (note: this may run significantly slower than the first two).
 print("Monte Carlo Method")
 # 2000000 samples
+# random point generation
+
 
 def monte_carlo(num_samples):
     np.random.seed(2) # for consistency
