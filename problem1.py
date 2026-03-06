@@ -32,8 +32,8 @@ def rectangle_method(n):
     area = 0.0
     
     for i in range(n):
+        x = xmin + (i + 0.5) * dx
         for j in range(n):
-            x = xmin + (i + 0.5) * dx
             y = ymin + (j + 0.5) * dy
             if integrand(x, y):
                 area += dx * dy
@@ -57,8 +57,9 @@ def trapezoidal_method(n):
     area = 0.0
     
     for i in range(n + 1):
+        x = xmin + i * dx
         for j in range(n + 1):
-            x = xmin + i * dx
+            
             y = ymin + j * dy
             
             weight = 1
