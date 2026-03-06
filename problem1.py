@@ -46,7 +46,7 @@ print("Rectangle (midpoint) area:", area_rect)
 
 
 # (2) (20 pts) Trapezoidal method.
-print("Trapezoioal Method")
+print("Trapezoidal Method")
 
 # (f(a) + f(b)) / 2 (b-a)
 # (delta x)/2 [f(x_0) + 2f(x_1) + ... + 2f(x_{n-1}) + f(x_n)]

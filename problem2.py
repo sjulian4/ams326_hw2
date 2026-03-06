@@ -12,12 +12,29 @@ A = np.random.uniform(-1, 1, (N, N))
 # vector of ones
 b = np.ones(N)
 
-# solve Ax = b
-x = np.linalg.solve(A, b)
+# solve Ax = b:
+A_original = A.copy()
+b_original = b.copy()
+# forward elimination
+for k in range(N-1):
+    for i in range(k+1, N):
+        factor = A[i,k] / A[k,k]
+        A[i,k:] = A[i,k:] - factor * A[k,k:]
+        b[i] = b[i] - factor * b[k]
+
+
+# back substitution
+x = np.zeros(N)
+
+for i in range(N-1, -1, -1):
+    s = 0
+    for j in range(i+1, N):
+        s += A[i,j] * x[j]
+    x[i] = (b[i] - s) / A[i,i]
 
 # todo make this not .solve
 
-
+print("Solved x: " + str(x))
 
 
 
@@ -28,9 +45,9 @@ x = np.linalg.solve(A, b)
 # residual = np.linalg.norm(A @ x - b, 1)
 residual = 0
 for i in range(N):
-    residual += abs((np.matmul(A, x) - b)[i])
+    residual += abs((np.matmul(A_original, x) - b_original)[i])
 
 print("L1 residual norm:", residual)
 
 
-# 3.7416736375917026e-12
+# 2.3175339425307584e-10
