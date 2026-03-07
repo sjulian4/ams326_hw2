@@ -42,8 +42,7 @@ def rectangle_method(n):
 
 n_rect = 1000 # 1000 subintervals
 area_rect = rectangle_method(n_rect)
-print("Rectangle (midpoint) area:", area_rect)
-
+print(f"Rectangle (midpoint) area: {area_rect:.4f}")
 
 # (2) (20 pts) Trapezoidal method.
 print("Trapezoidal Method")
@@ -75,7 +74,7 @@ def trapezoidal_method(n):
 
 n_trap = 1000
 area_trap = trapezoidal_method(n_trap)
-print("Trapezoidal area:", area_trap)
+print(f"Trapezoidal area: {area_trap:.4f}")
 
 
 # (3) (10 pts) Monte Carlo method (note: this may run significantly slower than the first two).
@@ -97,8 +96,8 @@ def monte_carlo(num_samples):
     box_area = (xmax - xmin) * (ymax - ymin)
     return box_area * count / num_samples
 
-samples = 2_000_000
+samples = 2000000
 area_mc = monte_carlo(samples)
-print("Monte Carlo area:", area_mc)
+print(f"Monte Carlo area: {area_mc:.4f}")
 
 
